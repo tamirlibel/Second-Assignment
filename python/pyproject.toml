@@ -1,0 +1,10 @@
+[project]
+name = "ccnews-pilot"
+version = "0.1.0"
+description = "CC-NEWS ingestion pilot for PLOVER-compatible event coding (Stage A)"
+requires-python = ">=3.11"
+dependencies = [
+    "warcio>=1.7",
+    "trafilatura>=2.0",
+    "pyarrow>=15",
+]
