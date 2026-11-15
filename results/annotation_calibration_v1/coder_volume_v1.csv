@@ -1,0 +1,5 @@
+round,coder,n_articles,n_mentions,mentions_per_article
+calibration,C1,30,26,0.8666666666666667
+calibration,C2,30,30,1
+calibration,C3,30,29,0.9666666666666667
+calibration,C4,30,25,0.8333333333333334

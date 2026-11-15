@@ -1,0 +1,7 @@
+round,coder_a,coder_b,n_articles,detection_f1
+calibration,C1,C2,30,0.8947368421052632
+calibration,C1,C3,30,0.9473684210526315
+calibration,C1,C4,30,0.9142857142857143
+calibration,C2,C3,30,0.9
+calibration,C2,C4,30,0.8648648648648649
+calibration,C3,C4,30,0.918918918918919

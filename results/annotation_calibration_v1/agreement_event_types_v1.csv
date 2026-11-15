@@ -1,0 +1,13 @@
+round,event_type,n_units,n_present,alpha
+calibration,ACCUSE,30,19,0.9379885356956749
+calibration,REQUEST,30,9,0.8808808808808809
+calibration,CONSULT,30,8,1
+calibration,AGREE,30,7,0.8495575221238938
+calibration,AID,30,4,1
+calibration,ASSAULT,30,4,1
+calibration,COOPERATE,30,4,1
+calibration,MOBILIZE,30,4,1
+calibration,PROTEST,30,4,1
+calibration,CONCEDE,30,1,0
+calibration,COERCE,30,0,NA
+calibration,SANCTION,30,0,NA

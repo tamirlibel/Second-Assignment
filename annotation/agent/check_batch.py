@@ -149,6 +149,8 @@ def main():
             lc = m.get("location_country")
             if lc not in (None, "") and not re.match(r"^[A-Z]{3}$", str(lc)):
                 probs.append(f"{w}: location_country must be ISO3 or empty")
+            if lc not in (None, "") and not squish(m.get("location_text")):
+                probs.append(f"{w}: location_country needs a location_text (only code a named place)")
             prec, d = m.get("date_precision"), m.get("event_date")
             if prec == "none":
                 if d not in (None, ""):

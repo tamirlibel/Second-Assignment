@@ -116,6 +116,7 @@ if (nrow(coded_men) > 0) {
 
   ##Location country
   flag(coded_men, !is.na(coded_men$location_country) & !str_detect(coded_men$location_country, "^[A-Z]{3}$"), "location_country", "use an ISO3 code")
+  flag(coded_men, !is.na(coded_men$location_country) & is.na(coded_men$location_text), "location_country", "only with a named place in location_text (v1.1)")
 
   ##Dates: format must match precision
   date_pattern <- c(day="^\\d{4}-\\d{2}-\\d{2}$", week="^\\d{4}-\\d{2}-\\d{2}$", month="^\\d{4}-\\d{2}$", year="^\\d{4}$")

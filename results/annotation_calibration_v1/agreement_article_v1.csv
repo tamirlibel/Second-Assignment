@@ -1,0 +1,4 @@
+round,variable,n_units,alpha,share_yes
+calibration,article_type,30,0.8177176410518254,0
+calibration,has_event,30,0.9154829545454546,0.26666666666666666
+calibration,political_relevant,30,1,0.2

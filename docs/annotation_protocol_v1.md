@@ -1,6 +1,6 @@
 # Annotation protocol v1: PLOVER event mentions in CC-NEWS
 
-**Status:** draft for the Stage A pilot (September 2026 sample). Revise after the calibration round, and record every change in the change log at the end.
+**Version:** v1.1 (revised after calibration; see the change log). **Status:** draft for the Stage A pilot (September 2026 sample). Revise after the calibration round, and record every change in the change log at the end.
 
 ## 1. Purpose
 
@@ -67,12 +67,12 @@ One row per event mention per coder.
 | `actor_sector` | Sector code(s) for each actor, separated by `;`. Join several sectors for one actor with `+`, primary sector first (e.g. `PTY+OPP`). Use `UNK` if unclear. |
 | `recipient_text`, `recipient_country`, `recipient_sector` | Same format as the actor fields. Leave empty if there is no recipient. Required for COOPERATE, AID and SANCTION. |
 | `location_text` | Where the event happened, as written. Leave empty if not stated. **Do not use the dateline city** unless the text says the event happened there. *(POLECAT p. 12)* |
-| `location_country` | ISO3 code of the event location. Leave empty if unknown. |
+| `location_country` | ISO3 code of the event location. **Fill it only when `location_text` is filled**, i.e. when the text names a place for this event. Do not infer it from the actors' nationality or from where the outlet is based. *(v1.1)* |
 | `date_text` | The date expression as written ("on Tuesday", "last week"). Leave empty if none. |
 | `event_date` | Resolved against the article's publication date. Format follows `date_precision`: `YYYY-MM-DD` for `day` and `week` (for `week`, use the first day), `YYYY-MM` for `month`, `YYYY` for `year`, empty for `none`. |
 | `date_precision` | `day`, `week`, `month`, `year` or `none` (no date expression in the text) |
 | `evidence` | The **one sentence** that best reports the event, copied verbatim from the item text. It is used to locate the mention, so copy it exactly. |
-| `crime_only` | `yes` if every actor and recipient is a private individual or criminal and nothing political is involved (e.g. a robbery or a domestic homicide); otherwise `no`. POLECAT removes street crime, so this flag lets the evaluation do the same. |
+| `crime_only` | `yes` if the event belongs to an **ordinary crime story with no political dimension**. This includes the police, prosecutors and courts handling such a crime (investigation, arrest, charge, conviction). `no` if political actors are involved as such, or the crime is political: terrorism, political violence, corruption by officials, repression, arrests of activists or opposition. POLECAT removes street crime, so this flag lets the evaluation do the same. *(v1.1: police and courts handling ordinary crime are now `yes`)* |
 | `confidence` | `1` = unsure, `2` = fairly sure, `3` = sure |
 | `notes` | Optional. Required when confidence is `1` (say what is ambiguous). |
 
@@ -88,6 +88,10 @@ Definitions are in `plover_event_modes_v1.csv` and, in full, in the manual. The 
 - **CONSULT actors.** If host and visitor are clear, the visitor is the actor and the host the recipient. Otherwise all participants are actors and there is no recipient. *(Manual)*
 - **ASSAULT actors.** In two-sided fighting, all sides are actors. In one-sided violence, the perpetrator is the actor and the victim the recipient. *(Manual)*
 - **Unknown perpetrators.** Use `UAF` for "unknown gunmen" and `UNK` for wholly unidentified actors. Do not leave the actor empty if an attack is reported.
+- **Agreeing to a demand: CONCEDE or AGREE?** Agreeing to a demand or request made under pressure, or one the actor had resisted, is CONCEDE. Agreeing to cooperate (talks, invitations, joint action), or promising future cooperation, is AGREE. *(v1.1)*
+- **Routine administration and domestic emergencies are not events.** This covers evacuation orders, disaster advisories, rescue work, infrastructure works, routine service delivery and customer forums. Aid across borders, or to a population in an armed conflict, is coded (AID). *(v1.1, project decision)*
+- **Repeated statements:** several statements by the same actor against the same recipient, with no distinct dates, form one mention, with all applicable modes. *(v1.1)*
+- **No fitting mode:** if no listed mode fits (e.g. a strangulation under ASSAULT), leave `modes` empty and say so in `notes`. *(v1.1)*
 - **Not events:** forecasts by analysts, polls, general descriptions of situations ("tensions remain high"), statistics without a specific action, and sports or business news without a political actor or action.
 
 ## 7. Status: decision rules
@@ -101,7 +105,9 @@ PLOVER defines historical, future, hypothetical and negated markers, but the man
 | `future` | Announced, planned or scheduled but not yet happened, *except* where §6 recodes it (AGREE, CONCEDE) | "Unions will strike next week" is PROTEST-strike (future) |
 | `hypothetical` | Conditional or possible | "Sanctions could follow if…" is SANCTION (hypothetical) |
 | `negated` | Explicitly did not happen | "No shots were fired" is ASSAULT (negated) |
-| `historical` | Happened more than 30 days before the article's publication date | Background on a 2014 war |
+| `historical` | Happened more than 30 days before the article's publication date, **as shown by a date or clear wording** ("in 2023", "last year"). An undated background event is `occurred` with `date_precision = none`. | Background on a 2014 war |
+
+**If more than one status applies,** use the first that fits in this order: `negated`, `hypothetical`, `future`, `alleged`, `historical`, `occurred`. For example, an unconfirmed accusation about an act from two years ago is `alleged`. *(v1.1)*
 
 ## 8. Procedure
 
@@ -173,3 +179,4 @@ The answers above are provisional. They are confirmed or revised at the first ca
 |---|---|---|
 | v1 | 2026-11-15 | First draft for the pilot |
 | v1 | 2026-11-15 | Four coders; coders C1–C4 are LLM subagents (§9a); matching rule made explicit (§9) |
+| v1.1 | 2026-11-15 | After calibration (4 coders × 30 articles): status precedence order; `historical` needs date evidence; `crime_only` covers police and courts handling ordinary crime; `location_country` only with a named place; CONCEDE vs AGREE for agreeing to demands; routine administration and domestic emergencies are not events; repeated statements merged; empty mode when none fits |
