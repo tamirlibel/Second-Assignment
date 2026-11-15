@@ -19,7 +19,7 @@ annot_dir <- file.path("data", "stage_a", "annotation")
 dir.create(file.path(annot_dir, "assigned"), recursive=TRUE, showWarnings=FALSE)
 dir.create(file.path(annot_dir, "coded"), recursive=TRUE, showWarnings=FALSE)
 
-coders <- c("C1", "C2")        #coder IDs; add more if available
+coders <- c("C1", "C2", "C3", "C4")   #coder IDs
 n_calib <- 30                  #calibration articles, coded by everyone, never evaluated
 enr_double_share <- 0.30       #share of enriched-sample articles coded twice
 assign_seed <- 20261116

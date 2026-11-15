@@ -108,6 +108,7 @@ PLOVER defines historical, future, hypothetical and negated markers, but the man
 1. **Training.** Read §§2–3 of the PLOVER manual and this protocol. Code the 5 worked examples in §11 and compare your answers with the key.
 2. **Calibration.** All coders independently code the calibration set (`calibration_items_v1.csv`). These articles are drawn from outside both evaluation samples and are never used in the evaluation. Disagreements are discussed and the protocol is revised (v1.1, …) **before** the main round.
 3. **Main round.** Code your assigned file in the given (random) order. Do not discuss individual articles with other coders until adjudication.
+   - There are four coders (C1–C4). Each double-coded article goes to a pair of coders chosen to balance workload, so all six coder pairs share articles.
    - Every probability-sample article is coded by two coders.
    - 30% of enriched-sample articles are coded by two coders; the rest by one.
 4. **Validation.** Run `R/04_validate_annotations.R` on your sheets and fix every error it reports before submitting.
