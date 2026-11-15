@@ -120,11 +120,21 @@ PLOVER defines historical, future, hypothetical and negated markers, but the man
 The same matching rules are used for coder-vs-coder reliability and for system-vs-gold evaluation.
 
 - **Article level:** Krippendorff's alpha for `political_relevant`, `article_type` and "has at least one event".
-- **Mention matching:** two mentions in the same article match if they have the same `event_type`, and either (a) their evidence sentences overlap, or (b) their actor sets share at least one normalised entity, with dates no more than one day apart when both are given. One-to-one matches are found with the Hungarian algorithm.
+- **Mention matching:** two mentions in the same article match if they have the same `event_type`, and either (a) their evidence sentences overlap, or (b) their actor sets share at least one normalised entity, with dates no more than one day apart when both are day-precise. Matching is one-to-one and greedy: evidence-based matches are made first, then actor-based ones (`R/06_agreement.R`).
 - **Mention detection:** precision, recall and F1 of matched mentions.
 - **Attributes,** on matched mentions only: agreement on mode, status, actor, recipient, location country and event date (given the precision).
 - **Complete-record accuracy:** the share of mentions with type, actor, recipient, location and date all correct. This is the strictest measure and the one closest to how event data are used.
 - **Default evaluation subset:** `status = occurred`, `crime_only = no`. Report the other statuses separately.
+
+## 9a. LLM (subagent) coders
+
+In v1, coders C1–C4 are Claude subagents. They follow this protocol through `annotation/agent/coder_prompt_v1.md`, read batch files of 25–30 articles, write JSON, and must pass `annotation/agent/check_batch.py`. `R/05_agent_to_sheets.R` converts their output to the standard coding sheets.
+
+- **Their annotations are "silver", not gold.** One of the systems to be evaluated is direct LLM coding, and NGEC-2025's demo models were trained on LLM labels, so LLM annotations are not independent of the systems they would evaluate. Agreement among subagent coders mostly measures one model's self-consistency, not human reliability.
+- **Uses:** testing and revising this protocol; first prevalence estimates; a provisional benchmark for NGEC-2025, reported with this caveat.
+- **Not a substitute** for a human-coded gold standard, or at least a human audit of a random subsample, for the study's main claims.
+- **Independence:** each subagent sees only the protocol, codebook and its own batch. It never sees other coders' output, sample labels or model output.
+- **`minutes`** is recorded as 0 for subagent coders.
 
 ## 10. Known differences from POLECAT/NGEC
 
@@ -162,3 +172,4 @@ The answers above are provisional. They are confirmed or revised at the first ca
 | Version | Date | Change |
 |---|---|---|
 | v1 | 2026-11-15 | First draft for the pilot |
+| v1 | 2026-11-15 | Four coders; coders C1–C4 are LLM subagents (§9a); matching rule made explicit (§9) |
