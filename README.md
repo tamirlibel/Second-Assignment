@@ -12,6 +12,11 @@ Stage A covers **corpus construction only**: selecting and streaming WARC files,
 | `python/pyproject.toml`, `python/uv.lock` | Pinned Python environment |
 | `R/01_ingest.R` | Selects WARC files across the month, downloads them with size checks, runs the extractor, keeps a ledger |
 | `R/02_articles.R` | Extraction diagnostics, language ID, publication-date checks, copy-to-canonical table, funnel, annotation samples |
+| `R/03_annotation_files.R` | Calibration set (30 articles outside both samples) and coder assignment files (probability sample double-coded, 30% of the enriched sample double-coded) |
+| `R/04_validate_annotations.R` | Checks coded sheets against the codebook (types, modes valid for the type, sectors, ISO3 codes, date formats, verbatim evidence) |
+| `docs/annotation_protocol_v1.md` | Annotation protocol: units, fields, decision rules, procedure, reliability metrics |
+| `annotation/codebook/` | Machine-readable PLOVER extracts (16 event types with modes, 25 sectors) pinned to PLOVER commit `5e0c24f`, plus status and article-type values |
+| `annotation/templates/` | Empty coding sheets (articles, mentions) |
 | `renv.lock` | R package versions used for the pilot run |
 | `results/stage_a_2026-09/` | Run diagnostics (no article text) |
 | `data/` | Local only, not committed: WARC files, extracted text, annotation files |
@@ -40,7 +45,10 @@ From the project root:
 ```
 Rscript R/01_ingest.R
 Rscript R/02_articles.R
+Rscript R/03_annotation_files.R
 ```
+
+Coders then code the files in `data/stage_a/annotation/assigned/` following `docs/annotation_protocol_v1.md`. They save their sheets to `data/stage_a/annotation/coded/` and check them with `Rscript R/04_validate_annotations.R`.
 
 Settings are at the top of each script: month, number of WARC files, sample rate, seed, publication-date window and sample sizes. `01_ingest.R` can be rerun safely. It skips WARC files whose summary says `completed: true` and redoes any file that was interrupted.
 

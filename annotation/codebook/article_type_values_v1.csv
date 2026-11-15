@@ -1,0 +1,8 @@
+article_type,definition
+news_report,"Report of recent events"
+opinion,"Opinion, editorial, column, letter"
+analysis_feature,"Analysis, explainer, feature, interview"
+roundup_composite,"Several unrelated stories in one item (briefs, live blogs, digests)"
+press_release,"Press release or official statement reproduced as an article"
+non_news,"Not a news item (religious text, product page, recipe, listing, sports results only, etc.)"
+other,"Anything else (explain in notes)"

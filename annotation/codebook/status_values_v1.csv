@@ -1,0 +1,7 @@
+status,definition
+occurred,"Reported as having taken place (including when attributed to a source, e.g. 'police said')"
+alleged,"Reported only as an accusation by someone else; the article does not itself confirm it"
+future,"Announced, planned or scheduled but not yet taken place"
+hypothetical,"Conditional or possible ('could', 'if', 'may')"
+negated,"Explicitly reported as not having taken place"
+historical,"Took place more than 30 days before the article's publication date (background)"

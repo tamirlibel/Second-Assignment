@@ -1,0 +1,17 @@
+event_type,modes,recipient_required,definition
+AGREE,,no,"Indicate willingness or commitment to cooperate, including promises to sign or ratify agreements"
+CONSULT,visit;third-party;multilateral;phone,no,"Meetings, visits, hosting and consultations, including by phone"
+SUPPORT,,no,"Verbal, non-material diplomatic cooperation or expressions of support"
+CONCEDE,,no,Verbal concessions without immediate material consequences
+COOPERATE,,yes,Initiate or expand mutual material cooperation or exchange
+AID,,yes,Material aid whose benefits primarily accrue to the recipient
+RETREAT,withdraw;release;disarm;ceasefire;access;resign,no,"Immediate material concessions: releasing captives, withdrawing, disarming, resigning"
+REQUEST,assist;change;yield;meet,no,"Verbal requests, demands and orders"
+ACCUSE,disapprove;investigate;allege,no,"Disapprovals, accusations, allegations and investigations"
+REJECT,assist;change;yield;meet,no,Rejections and refusals
+THREATEN,restrict;arrest;relations;expel;territory;violence,no,Threats or coercive warnings with serious potential repercussions
+SANCTION,convict;expel;withdraw;discontinue,yes,"Reductions in existing, routine or cooperative relations"
+PROTEST,demo;riot;strike;hunger;boycott;obstruct;vandalize,no,Civilian demonstrations and collective protest actions
+MOBILIZE,troops;weapons;police;militia,no,Military or police moves short of the actual use of force
+COERCE,seize;restrict;censor;curfew;martial-law;arrest;deport;withhold;misinformation;cyber,no,"Repression, rights restrictions and coercive power short of violence"
+ASSAULT,abduct;beat;torture;sexual;targeted;destroy;primitive;firearms;explosives;suicide-attack;aerial;drone;heavy-weapons;crowd-control;unconventional,no,Deliberate actions that can cause substantial physical harm
