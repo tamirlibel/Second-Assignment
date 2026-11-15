@@ -1,0 +1,8 @@
+step,n
+WARC response records (all),251193
+Sampled records,12491
+HTTP 200 + HTML,12442
+Text extracted,12314
+English,3009
+English + current publication date,2156
+Unique English articles,2063

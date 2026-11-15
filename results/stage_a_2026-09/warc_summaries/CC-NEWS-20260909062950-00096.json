@@ -1,0 +1,37 @@
+{
+  "warc_path": "crawl-data/CC-NEWS/2026/09/CC-NEWS-20260909062950-00096.warc.gz",
+  "completed": true,
+  "stream_error": null,
+  "file_bytes": 1072717138,
+  "expected_bytes": 1072717138,
+  "max_records": null,
+  "n_records": 41969,
+  "n_response": 20984,
+  "n_sampled": 1047,
+  "n_parts": 2,
+  "sampled_status": {
+    "ok": 1043,
+    "not_html": 2,
+    "no_extraction": 1,
+    "empty_text": 1
+  },
+  "http_status_all": {
+    "200": 20984
+  },
+  "mime_all": {
+    "text/html": 20956,
+    "application/xml": 14,
+    "application/json": 12,
+    "none": 2
+  },
+  "sample_rate": 0.05,
+  "seed": "ccnews-pilot-v1",
+  "seconds": 98.3,
+  "finished_utc": "2026-11-15T19:37:37+00:00",
+  "versions": {
+    "python": "3.13.18",
+    "warcio": "1.8.2",
+    "trafilatura": "2.3.1",
+    "pyarrow": "26.0.1"
+  }
+}
